@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security.xsd">
+
+    <context:component-scan base-package="com"/>
+    <mvc:annotation-driven/>
+
+    <bean id="tileViewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"/>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+    <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <property name="definitions">
+            <list>
+                <value>/WEB-INF/layout/default.xml</value>
+            </list>
+        </property>
+    </bean>
+
+<!--    Spring Security Start -->
+
+    <security:http auto-config="true">
+        <security:intercept-url access="hasRole('ROLE_ADMIN')" pattern="/admin/**"/>
+        <security:intercept-url access="hasAnyRole('ROLE_ADMIN','ROLE_AUTHOR')" pattern="/author/**"/>
+
+        <security:form-login
+            login-page="/login"
+            default-target-url="/author/home"
+            authentication-failure-url="/login?error"
+            username-parameter="username"
+            password-parameter="password"
+            login-processing-url="/j_spring_security_check"
+        />
+
+        <security:logout
+            logout-success-url="/login?logout"
+            logout-url="/logout"
+            invalidate-session="true"
+        />
+
+        <security:csrf disabled="true"/>
+
+    </security:http>
+
+    <security:authentication-manager>
+        <security:authentication-provider>
+            <security:jdbc-user-service data-source-ref="dataSource"
+                authorities-by-username-query="SELECT username, authority FROM authorities WHERE username=?"
+                users-by-username-query="SELECT username, password,enabled FROM users WHERE username=?"
+            />
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+<!--    Spring Security End -->
+
+    <mvc:resources mapping="/assets/**" location="/WEB-INF/assets/"/>
+    <tx:annotation-driven/>
+
+</beans>

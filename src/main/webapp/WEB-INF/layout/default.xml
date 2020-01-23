@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+    <definition name="base" template="/WEB-INF/template/default.jsp">
+        <put-attribute name="title" value="Online Media"/>
+        <put-attribute name="nav" value="/WEB-INF/tiles/includes/nav.jsp"/>
+        <put-attribute name="menu" value=""/>
+        <put-attribute name="content" value=""/>
+        <put-attribute name="footer" value="/WEB-INF/tiles/includes/footer.jsp"/>
+    </definition>
+
+    <definition name="home" extends="base">
+        <put-attribute name="title" value="Home Page"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/public/home.jsp"/>
+    </definition>
+
+    <definition name="admin.home" extends="base">
+        <put-attribute name="title" value="Admin Page"/>
+        <put-attribute name="menu" value="/WEB-INF/tiles/includes/admin_menu.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/admin/home.jsp"/>
+    </definition>
+
+    <definition name="contact" extends="base">
+        <put-attribute name="title" value="Contact"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/public/contact.jsp"/>
+    </definition>
+
+    <definition name="author.home" extends="base">
+        <put-attribute name="title" value="Author Page"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/author/home.jsp"/>
+    </definition>
+
+    <definition name="admin.cat.all" extends="base">
+        <put-attribute name="title" value="Category Page"/>
+        <put-attribute name="menu" value="/WEB-INF/tiles/includes/admin_menu.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/admin/cats/all.jsp"/>
+    </definition>
+
+    <definition name="admin.cat.edit" extends="base">
+        <put-attribute name="title" value="Category Edit"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/admin/cats/edit.jsp"/>
+    </definition>
+
+    <definition name="admin.cat.create" extends="base">
+        <put-attribute name="title" value="Category Create"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/admin/cats/create.jsp"/>
+    </definition>
+
+    <definition name="author.post.create" extends="base">
+        <put-attribute name="title" value="Create Post"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/author/post/create.jsp"/>
+    </definition>
+
+    <definition name="author.post.all" extends="base">
+        <put-attribute name="title" value="Create Post"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/author/post/all.jsp"/>
+    </definition>
+
+    <definition name="author.post.edit" extends="base">
+        <put-attribute name="title" value="Edit Post"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/author/post/edit.jsp"/>
+    </definition>
+
+    <definition name="users.all" extends="base">
+        <put-attribute name="title" value="All Users"/>
+        <put-attribute name="menu" value="/WEB-INF/tiles/includes/admin_menu.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/admin/users/all.jsp"/>
+    </definition>
+
+    <definition name="login" extends="base">
+        <put-attribute name="title" value="Login Users"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/public/login.jsp"/>
+    </definition>
+
+    <definition name="single.post" extends="base">
+        <put-attribute name="title" value="Single Posts"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/public/singlePost.jsp"/>
+    </definition>
+
+    <definition name="register" extends="base">
+        <put-attribute name="title" value="Register"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/public/register.jsp"/>
+    </definition>
+
+    <definition name="catPage" extends="base">
+        <put-attribute name="title" value="Category Page"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/public/catpage.jsp"/>
+    </definition>
+
+
+</tiles-definitions>
